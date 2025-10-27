@@ -5,11 +5,17 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="/2024/11/29/hello-world/"/>
-    <url>/2024/11/29/hello-world/</url>
+    <link href="/2025/10/27/hello-world/"/>
+    <url>/2025/10/27/hello-world/</url>
     
-    <content type="html"><![CDATA[<p>大家好，我是Surge，这是我的博客<br>我会记录一些学习技术的过程</p><p>(^__^)</p>]]></content>
+    <content type="html"><![CDATA[<p>大家好，我是Surge，这是我的博客，我会记录一些学习技术的过程</p><p>(^__^)</p>]]></content>
     
+    
+    <categories>
+      
+      <category>碎碎念</category>
+      
+    </categories>
     
     
   </entry>
