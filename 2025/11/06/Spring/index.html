@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Surge">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Springspring是一个用于简化开发的轻量级IoC和AOP的容器框架，主要是针对Bean的生命周期进行管理的轻量级容器，并且它的生态发展已经极其庞大。 IoC容器基础IoC理论Inversion of Control 控制反转，把复杂系统分解成相互合作的对象，这些对象类通过封装后，内部实现对外部是透明的，从而降低了解决问题的复杂度，而且可以灵活地被重用和扩展 开发中高耦合带来的缺点很明显，要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring">
+<meta property="og:url" content="http://supersurge.github.io/2025/11/06/Spring/index.html">
+<meta property="og:site_name" content="Surge的小站">
+<meta property="og:description" content="Springspring是一个用于简化开发的轻量级IoC和AOP的容器框架，主要是针对Bean的生命周期进行管理的轻量级容器，并且它的生态发展已经极其庞大。 IoC容器基础IoC理论Inversion of Control 控制反转，把复杂系统分解成相互合作的对象，这些对象类通过封装后，内部实现对外部是透明的，从而降低了解决问题的复杂度，而且可以灵活地被重用和扩展 开发中高耦合带来的缺点很明显，要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-06T14:02:00.000Z">
+<meta property="article:modified_time" content="2026-11-05T02:23:33.893Z">
+<meta property="article:author" content="Surge">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Spring - Surge的小站</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"supersurge.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Surge&#39;s Home</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default1.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Spring"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-06 22:02" pubdate>
+          2025年11月6日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Spring</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><p>spring是一个用于简化开发的轻量级IoC和AOP的容器框架，主要是针对Bean的生命周期进行管理的轻量级容器，并且它的生态发展已经极其庞大。</p>
+<h1 id="IoC容器基础"><a href="#IoC容器基础" class="headerlink" title="IoC容器基础"></a>IoC容器基础</h1><h2 id="IoC理论"><a href="#IoC理论" class="headerlink" title="IoC理论"></a>IoC理论</h2><p>Inversion of Control 控制反转，把复杂系统分解成相互合作的对象，这些对象类通过封装后，内部实现对外部是透明的，从而降低了解决问题的复杂度，而且可以灵活地被重用和扩展</p>
+<p>开发中高耦合带来的缺点很明显，要改善只能将各个模块进行解耦，让各个模块之间依赖性降低。也就是，Service的实现类，不再由我们决定，而是让程序自己决定，所有的实现类对象，全部交给程序来管理，所有对象之间的关系，也是由程序来动态决定，这样就引入了IoC理论</p>
+<p>我们可以将对象交给IoC容器进行管理，比如当我们需要一个接口的实现时，由它根据配置文件来决定到底给我们哪一个实现类，这样，我们就可以不用再关心我们要去使用哪一个实现类了，我们只需要关心，给到我的一定是一个可以正常使用的实现类，能用就行了</p>
+<p>高内聚，低耦合，是现代软件开发的设计目标，Spring框架就给我们提供了一个IoC容器进行对象的管理，一个由Spring IoC容器实例化、组装和管理的对象，称其为Bean</p>
+<h2 id="Spring快速上手"><a href="#Spring快速上手" class="headerlink" title="Spring快速上手"></a>Spring快速上手</h2><p>Spring不是一个独立的框架，实际上包含了很多模块，首先要学习Core Container，也就是核心容器模块</p>
+<p>Spring是一个非侵入式的框架，就像一个工具库一样，可以很简单的加入到已有的项目中，因此只需要导入其依赖即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;dependency&gt;<br>      &lt;groupId&gt;org.springframework&lt;/groupId&gt;<br>      &lt;artifactId&gt;spring-context&lt;/artifactId&gt;<br>      &lt;version&gt;<span class="hljs-number">7.0</span><span class="hljs-number">.0</span>-M9&lt;/version&gt;<br>  &lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+<p>然后我们来尝试写一个简单的Spring项目，在前面讲过，Spring回给我们提供IoC容器用于管理Bean。但是我们得先为这个容器编写一个配置文件，我们可以通过配置文件告诉容器需要管理哪些Bean以及Bean的属性、依赖关系等等。</p>
+<p>首先我们需要在resource中创建一个Spring配置文件（在resource中创建的文件，会在编译时被一起放到类路径下），命名为application.xml，直接右键点击即可创建</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;<br>&lt;beans xmlns=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span><br>       xmlns:xsi=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br>       xsi:schemaLocation=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span><br><span class="hljs-string">        https://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;<br>&lt;/beans&gt;<br></code></pre></td></tr></table></figure>
+
+<p>然后我们要使用IoC容器并向其索要对象时，需要先创建一个应用程序上下文，它就代表IoC容器，会负责实例化和配置Bean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>     <span class="hljs-comment">//ApplicationContext是应用程序上下文的顶层接口，它有很多种实现，这里我们先介绍第一种</span><br>     <span class="hljs-comment">//因为这里使用的是XML配置文件，所以说我们就使用 ClassPathXmlApplicationContext 这个实现类</span><br>   <span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;application.xml&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后我们创建一个student对象，创建好了之后就可以在配置文件里面配置这个Bean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;org.example.entity.Student&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>可以为bean起名字，然后写出对应的类的路径，就配置好了</p>
+<p>要实例化这个对象就可以通过getBean()方法拿到，而不用通过new</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;test.xml&quot;</span>);<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> (Student) context.getBean(<span class="hljs-string">&quot;student&quot;</span>);   <span class="hljs-comment">//使用getBean方法来获取对应的对象（Bean）</span><br>    student.hello();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p> 这里getBean()方法，里面可以写类名<code>Student.class</code>，也可以写bean的名字：<code>student</code>，也可以同时传入这两个参数，但是要注意只传入名字时需要强转</p>
+<p>然后这里的对象实际上是Spring通过反射机制来创建的</p>
+<h2 id="Bean注册与配置"><a href="#Bean注册与配置" class="headerlink" title="Bean注册与配置"></a>Bean注册与配置</h2><p>现在来详细讲一讲Bean的注册与配置相关的知识</p>
+<p>配置文件可以有多个，并且互相之间可以相互导入：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;<br>&lt;beans ...&gt;<br>    &lt;<span class="hljs-keyword">import</span> resource=<span class="hljs-string">&quot;test.xml&quot;</span>/&gt;<br>&lt;/beans&gt;<br></code></pre></td></tr></table></figure>
+
+<p>注册一个Bean，只需要添加一个标签：<code>&lt;bean/&gt;</code>，但是还需要配置出它的类：<code>&lt;bean class=&quot;org.example.entity.Student&quot;/&gt;</code>，注册好了之后，对应的类的左边会出现一个绿色的豆子的小图标</p>
+<p>但是只配置Bean的类，有时候会不好区分，比如AStudent和BStudent都继承了Student，getBean()时如果类填的是Student.class就会出问题，因为这两个都是它的子类，为了易于区分，我们可以设置<strong>name</strong>属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;astudent&quot;</span> class=<span class="hljs-string">&quot;org.example.entity.AStudent&quot;</span>/&gt;<br>&lt;bean name=<span class="hljs-string">&quot;bstudent&quot;</span> class=<span class="hljs-string">&quot;org.example.entity.BStudent&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>除了名字，还可以取小名：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;a&quot;</span> class=<span class="hljs-string">&quot;org.example.entity.Student&quot;</span>/&gt;<br>&lt;alias name=<span class="hljs-string">&quot;a&quot;</span> alias=<span class="hljs-string">&quot;test&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>这样也可以通过小名拿到Bean</p>
+<p>然后现在有个问题：IoC容器创建的Bean是只有一个，还是每次getBean()都会新建一个？我们可以自己动手试试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Student</span> <span class="hljs-variable">student1</span> <span class="hljs-operator">=</span> context.getBean(Student.class);<br><span class="hljs-type">Student</span> <span class="hljs-variable">student2</span> <span class="hljs-operator">=</span> context.getBean(Student.class);<br>System.out.println(student1 == student2);   <span class="hljs-comment">//true，默认为单例模式，对象始终为同一个</span><br></code></pre></td></tr></table></figure>
+
+<p>其实创建对象有两种作用域：一种是单例模式<code>singleton</code>（默认情况），随着容器加载时就被创建，之后拿到的都是这个对象，只要容器没被销毁，对象一直存在；一种是原型模式<code>prototype</code>（多例模式），每次拿的时候都创建一个新的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean class=<span class="hljs-string">&quot;org.example.entity.Student&quot;</span> scope=<span class="hljs-string">&quot;singleton&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>如果在单例模式下，希望Bean不要一开始就被加载，而是需要用的时候才加载，可以开启懒加载：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean class=<span class="hljs-string">&quot;org.example.entity.Student&quot;</span> lazy-init=<span class="hljs-string">&quot;true&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>然后由于单例模式下Bean是由容器加载，如果我们想维护Bean的加载顺序，可以使用<code>depends-on</code>来设定前置加载Bean，这样被依赖的Bean就会在之前加载：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;teacher&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Teacher&quot;</span>/&gt;<br>&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span> depends-on=<span class="hljs-string">&quot;teacher&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><p>DI（Dependency Injection）依赖注入，也是Spring框架的核心概念之一，DI能让我们在IoC容器创建对象的时候就将预先给定的属性值注入到对象中，而不用再手动显示创建。我们可以用<code>property</code>标签来实现：</p>
+<p>如果学生类有一个私有的成员变量是老师，如果显示创建的话，后面要是老师换了一个人，A老师换成了B，那么所有代码中显示写出了A老师的地方都要手动修改，很麻烦，但是用依赖注入可以解决</p>
+<p>但是，<strong>依赖注入要求对应属性必须要有一个set方法！</strong>    </p>
+<p>有了之后就可以：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;teacher&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.ATeacher&quot;</span>/&gt;<br>&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span>&gt;<br>    &lt;property name=<span class="hljs-string">&quot;teacher&quot;</span> ref=<span class="hljs-string">&quot;teacher&quot;</span>/&gt;<br>&lt;/bean&gt;<br></code></pre></td></tr></table></figure>
+
+<p><code>ref</code>： 用于建立 bean 之间的依赖关系，将一个 bean 引用到另一个 bean 的属性中。这里的property name表示要注入的是student这个Bean里面的teacher属性，ref的teacher表示，注入的是名字叫teacher的Bean。</p>
+<p>除了ref，还有<code>value </code>属性，用于设置基本类型的值，比如int、String等</p>
+<p>property标签可以有多个，来注入不同属性</p>
+<p>实际上，很多情况下，类中的某些参数是在构造方法里面就已经完成初始化的，而不是创建之后，比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Teacher teacher;   <span class="hljs-comment">//构造方法中完成，所以说是一个final变量</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Student</span><span class="hljs-params">(Teacher teacher)</span>&#123;   <span class="hljs-comment">//Teacher属性是在构造方法中完成的初始化</span><br>        <span class="hljs-built_in">this</span>.teacher = teacher;<br>    &#125;<br>      ...<br></code></pre></td></tr></table></figure>
+
+<p>前面说了，Bean实际上是由IoC容器进行创建的，但是现在我们修改了默认的无参构造，于是配置文件里面会报错，是因为我们修改了构造方法，IoC容器默认只会调用无参构造，所以，我们需要指明一个可以用的构造方法，我们展开bean标签，添加一个<code>constructor-arg</code>标签：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;teacher&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.ArtTeacher&quot;</span>/&gt;<br>&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span>&gt;<br>    &lt;constructor-arg name=<span class="hljs-string">&quot;teacher&quot;</span> ref=<span class="hljs-string">&quot;teacher&quot;</span>/&gt;<br>&lt;/bean&gt;<br></code></pre></td></tr></table></figure>
+
+<p>这里的<code>constructor-arg</code>就是构造方法的一个参数，这个参数可以写很多个，会自动匹配符合里面参数数量的构造方法</p>
+<p>除了name，也可以用type来注入：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Student</span><span class="hljs-params">(<span class="hljs-type">int</span> age)</span><br>        <span class="hljs-built_in">this</span>.name = String.valueOf(age);<br>    &#125;<br>&#125;<br><br>&lt;constructor-arg value=<span class="hljs-string">&quot;1&quot;</span> type=<span class="hljs-string">&quot;int&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>反正只要能够保证我们指定的参数匹配到目标构造方法即可。</p>
+<p>然后对于List、Map、Set这些特殊的类型，有着特殊的支持：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span>&gt;<br>      &lt;!--  对于集合类型，我们可以直接使用标签编辑集合的默认值  --&gt;<br>    &lt;property name=<span class="hljs-string">&quot;list&quot;</span>&gt;<br>        &lt;list&gt;<br>            &lt;value&gt;AAA&lt;/value&gt;<br>            &lt;value&gt;BBB&lt;/value&gt;<br>            &lt;value&gt;CCC&lt;/value&gt;<br>        &lt;/list&gt;<br>    &lt;/property&gt;<br>&lt;/bean&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span>&gt;<br>    &lt;property name=<span class="hljs-string">&quot;map&quot;</span>&gt;<br>        &lt;map&gt;<br>            &lt;entry key=<span class="hljs-string">&quot;语文&quot;</span> value=<span class="hljs-string">&quot;100.0&quot;</span>/&gt;<br>            &lt;entry key=<span class="hljs-string">&quot;数学&quot;</span> value=<span class="hljs-string">&quot;80.0&quot;</span>/&gt;<br>            &lt;entry key=<span class="hljs-string">&quot;英语&quot;</span> value=<span class="hljs-string">&quot;92.5&quot;</span>/&gt;<br>        &lt;/map&gt;<br>    &lt;/property&gt;<br>&lt;/bean&gt;<br></code></pre></td></tr></table></figure>
+
+<p>至此，我们就已经完成了两种依赖注入的学习：</p>
+<ul>
+<li>Setter依赖注入：通过成员属性对应的set方法完成注入。</li>
+<li>构造方法依赖注入：通过构造方法完成注入。</li>
+</ul>
+<h2 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h2><p>在之前，如果我们需要使用依赖注入的话，我们需要对<code>property</code>参数进行配置</p>
+<p>但是有些时候为了方便，我们也可以开启自动装配。自动装配就是让IoC容器自己去寻找需要填入的值，我们只需要将set方法提供好就可以了，这里需要添加autowire属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span> autowire=<span class="hljs-string">&quot;byType&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p><code>autowire</code>属性有两个值普通，一个是byName，还有一个是byType，顾名思义，一个是根据类型去寻找合适的Bean自动装配，还有一个是根据名字去找，这样我们就不需要显式指定<code>property</code>了。此时set方法旁边会出现一个自动装配图标</p>
+<p>注意：byName按名字寻找，<strong>找的是set方法对应的名字</strong>，比如setTeacher，那么对应的bean就会按名字去找teacher这个bean，如果set方法改为setTeacher1，那就会去找teacher1这个bean，要是没找到就会报错</p>
+<p>对于使用构造方法完成的依赖注入，也支持自动装配，我们只需要将autowire修改为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span> autowire=<span class="hljs-string">&quot;constructor&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>这样，我们只需要提供一个对应参数的构造方法就可以了（这种情况默认也是byType寻找的）</p>
+<p>但是有时候自动装配会遇到一些问题，比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;teacher&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.ArtTeacher&quot;</span>/&gt;<br>&lt;bean name=<span class="hljs-string">&quot;teacher2&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.ProgramTeacher&quot;</span>/&gt;<br>&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span> autowire=<span class="hljs-string">&quot;byType&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>会提示报错。</p>
+<p>此时，由于<code>autowire</code>的规则为byType，存在两个候选Bean，但是我们其实希望ProgramTeacher这个Bean在任何情况下都不参与到自动装配中，此时我们就可以将它的自动装配候选关闭：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;teacher&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.ArtTeacher&quot;</span>/&gt;<br>&lt;bean name=<span class="hljs-string">&quot;teacher2&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.ProgramTeacher&quot;</span> autowire-candidate=<span class="hljs-string">&quot;false&quot;</span>/&gt;<br>&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span> autowire=<span class="hljs-string">&quot;byType&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>当<code>autowire-candidate</code>设定false时，这个Bean将不再作为自动装配的候选Bean，此时自动装配候选就只剩下一个唯一的Bean了，报错消失，程序可以正常运行。</p>
+<p>除了这种方式，我们也可以设定primary属性，表示这个Bean作为主要的Bean，当出现歧义时，也会优先选择：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Java">&lt;bean name=<span class="hljs-string">&quot;teacher&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.ArtTeacher&quot;</span> primary=<span class="hljs-string">&quot;true&quot;</span>/&gt;<br>&lt;bean name=<span class="hljs-string">&quot;teacher2&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.ProgramTeacher&quot;</span>/&gt;<br>&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span> autowire=<span class="hljs-string">&quot;byType&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="生命周期与继承"><a href="#生命周期与继承" class="headerlink" title="生命周期与继承"></a>生命周期与继承</h2><p>除了修改构造方法，我们也可以为Bean指定初始化方法和销毁方法，以便在对象创建和被销毁时执行一些其他的任务，比如在Student里面创建方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">()</span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;我是对象初始化时要做的事情！&quot;</span>);    <br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">destroy</span><span class="hljs-params">()</span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;我是对象销毁时要做的事情！&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后可以通过<code>init-method</code>和<code>destroy-method</code>来指定初始化和销毁方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span> init-method=<span class="hljs-string">&quot;init&quot;</span> destroy-method=<span class="hljs-string">&quot;destroy&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>什么时候是初始化，什么时候又是销毁呢？当容器创建时，默认情况下Bean都是单例的，那么都会在一开始就加载好，对象构造完成后，会执行init-method</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ClassPathXmlApplicationContext</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassPathXmlApplicationContext</span>(<span class="hljs-string">&quot;test.xml&quot;</span>);<br>context.close();<br></code></pre></td></tr></table></figure>
+
+<p>我们可以调用close方法关闭容器，此时容器内存放的Bean也会被一起销毁，会执行destroy-method，但是注意，ClassPathXmlApplicationContext才有close方法，ApplicationContext没有</p>
+<p>如果Bean不是单例模式，而是采用的原型模式，那么就只会在获取时才创建，并调用init-method，而对应的销毁方法不会被调用（因此，对于原型模式下的Bean，Spring无法顾及其完整生命周期，而在单例模式下，Spring能够从Bean对象的创建一直管理到对象的销毁）</p>
+<p>Bean之间也是具备继承关系的，只不过这里的继承并不是类的继承，而是属性的继承，比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SportStudent</span> &#123;<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setName</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ArtStudent</span> &#123;<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setName</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>此时，我们先将ArtStudent注册一个Bean：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;artStudent&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.ArtStudent&quot;</span>&gt;<br>    &lt;property name=<span class="hljs-string">&quot;name&quot;</span> value=<span class="hljs-string">&quot;小明&quot;</span>/&gt;<br>&lt;/bean&gt;<br></code></pre></td></tr></table></figure>
+
+<p>这里我们会注入一个name的初始值，此时我们创建了一个SportStudent的Bean，我们希望这个Bean的属性跟刚刚创建的Bean属性是一样的，那么我们可以写一个一模一样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean class=<span class="hljs-string">&quot;com.test.bean.SportStudent&quot;</span>&gt;<br>    &lt;property name=<span class="hljs-string">&quot;name&quot;</span> value=<span class="hljs-string">&quot;小明&quot;</span>/&gt;<br>&lt;/bean&gt;<br></code></pre></td></tr></table></figure>
+
+<p>但是如果属性太多的话，是不是写起来有点麻烦？这种情况，我们就可以配置Bean之间的继承关系了，我们可以让SportStudent这个Bean直接继承ArtStudent这个Bean配置的属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean class=<span class="hljs-string">&quot;com.test.bean.SportStudent&quot;</span> parent=<span class="hljs-string">&quot;artStudent&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>这样，在ArtStudent Bean中配置的属性，会直接继承给SportStudent Bean（注意，所有配置的属性，在子Bean中必须也要存在，并且可以进行注入，否则会出现错误）</p>
+<p>当然，如果子类中某些属性比较特殊，也可以在继承的基础上单独配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;artStudent&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.ArtStudent&quot;</span> <span class="hljs-keyword">abstract</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;<br>    &lt;property name=<span class="hljs-string">&quot;name&quot;</span> value=<span class="hljs-string">&quot;小明&quot;</span>/&gt;<br>    &lt;property name=<span class="hljs-string">&quot;id&quot;</span> value=<span class="hljs-string">&quot;1&quot;</span>/&gt;<br>&lt;/bean&gt;<br>&lt;bean class=<span class="hljs-string">&quot;com.test.bean.SportStudent&quot;</span> parent=<span class="hljs-string">&quot;artStudent&quot;</span>&gt;<br>    &lt;property name=<span class="hljs-string">&quot;id&quot;</span> value=<span class="hljs-string">&quot;2&quot;</span>/&gt;<br>&lt;/bean&gt;<br></code></pre></td></tr></table></figure>
+
+<p>如果我们只是希望某一个Bean仅作为一个配置模版供其他Bean继承使用，那么我们可以将其配置为abstract，这样，容器就不会创建这个Bean的对象了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean name=<span class="hljs-string">&quot;artStudent&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.ArtStudent&quot;</span> <span class="hljs-keyword">abstract</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;<br>    &lt;property name=<span class="hljs-string">&quot;name&quot;</span> value=<span class="hljs-string">&quot;小明&quot;</span>/&gt;<br>&lt;/bean&gt;<br>&lt;bean class=<span class="hljs-string">&quot;com.test.bean.SportStudent&quot;</span> parent=<span class="hljs-string">&quot;artStudent&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<p>注意，一旦声明为抽象Bean，那么就无法通过容器获取到其实例化对象了。</p>
+<p>这里最后再提一下，我们前面已经学习了各种各样的Bean配置属性，如果我们希望整个上下文中所有的Bean都采用某种配置，我们可以在最外层的beans标签中进行默认配置： <code>default-autowire</code>、<code>default-lazy-init</code>等，这样，即使Bean没有配置某项属性，但是只要在最外层编写了默认配置，那么同样会生效，除非Bean自己进行配置覆盖掉默认配置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;beans xmlns=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span><br>       xmlns:xsi=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br>       xsi:schemaLocation=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span><br><span class="hljs-string">        https://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span> <span class="hljs-keyword">default</span>-autowire=<span class="hljs-string">&quot;byName&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="工厂模式和工厂Bean"><a href="#工厂模式和工厂Bean" class="headerlink" title="工厂模式和工厂Bean"></a>工厂模式和工厂Bean</h2><h2 id="注解开发"><a href="#注解开发" class="headerlink" title="注解开发"></a>注解开发</h2><p>前面都是使用配置文件进行开发，但是还有一种更高效便捷的方式，就是使用注解开发</p>
+<p>使用注解开发就不需要配置文件，而需要一个配置类，并使用<code>@Configuration</code>注解来表明它是配置类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainConfiguration</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后还是需要应用程序上下文，这里就是<code>AnnotationConfigApplicationContext</code>了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ApplicationContext</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AnnotationConfigApplicationContext</span>(MainConfiguration.class);<br><span class="hljs-comment">//这个构造方法可以接收多个配置类（更准确的说是多个组件）</span><br></code></pre></td></tr></table></figure>
+
+<p>然后就是配置我们的Bean了，在配置文件里面配置Bean：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainConfiguration</span> &#123;<br><br>    <span class="hljs-meta">@Bean(&quot;student&quot;)</span><br>    <span class="hljs-keyword">public</span> Student <span class="hljs-title function_">student</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>同样是可以取名，不取名getBean的时候就是填写类，和使用配置文件一样。然后用配置类来注册Bean，其实就是在配置类里面手动new一个对象，然后通过方法返回。其实如果我们不给Bean起名，Spring会为我们自动取名，<strong>Bean对应的方法名就是默认名字</strong>，比如这里的方法名叫student，所以如果我们不取名，那么这个Bean的默认名字也是student。</p>
+<p>上面的注解配置Bean等同于配置文件中的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;<br>&lt;beans xmlns=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span><br>       xmlns:xsi=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br>       xsi:schemaLocation=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans</span><br><span class="hljs-string">        https://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;<br>    &lt;<span class="hljs-type">bean</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;student&quot;</span> class=<span class="hljs-string">&quot;com.test.bean.Student&quot;</span>/&gt;<br>&lt;/beans&gt;<br></code></pre></td></tr></table></figure>
+
+<p>我们也可以通过@Import还可以引入其他配置类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Import(LBWConfiguration.class)</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainConfiguration</span> &#123;<br></code></pre></td></tr></table></figure>
+
+<p>然后之前配置文件的其他属性，也可以通过Bean注解中的属性，或者添加其他注解来进行配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean(name = &quot;&quot;, initMethod = &quot;&quot;, destroyMethod = &quot;&quot;, autowireCandidate = false)</span><br><span class="hljs-meta">@Lazy(true)</span>     <span class="hljs-comment">//对应lazy-init属性</span><br><span class="hljs-meta">@Scope(&quot;prototype&quot;)</span>    <span class="hljs-comment">//对应scope属性</span><br><span class="hljs-meta">@DependsOn(&quot;teacher&quot;)</span>    <span class="hljs-comment">//对应depends-on属性</span><br><span class="hljs-keyword">public</span> Student <span class="hljs-title function_">student</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于需要通过构造方法或者setter方法完成依赖注入的Bean，我们可以创建对应构造方法然后在配置类里实现注入，或者通过setter方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainConfiguration</span> &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Teacher <span class="hljs-title function_">teacher</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Teacher</span>();<br>    &#125;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Student <span class="hljs-title function_">student</span><span class="hljs-params">(Teacher teacher)</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(teacher);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainConfiguration</span> &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Student <span class="hljs-title function_">student</span><span class="hljs-params">(Teacher teacher)</span> &#123;<br>        <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>        student.setTeacher(teacher);<br>        <span class="hljs-keyword">return</span> student;<br>    &#125;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Teacher <span class="hljs-title function_">teacher</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Teacher</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们也可以直接到Bean对应的类中使用自动装配：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-meta">@Autowired</span>   <span class="hljs-comment">//使用此注解来进行自动装配，由IoC容器自动为其赋值</span><br>    <span class="hljs-keyword">private</span> Teacher teacher;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当然，@Autowired并不是只能用于字段，对于构造方法或是Setter，它同样可以：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-keyword">private</span> Teacher teacher;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setTeacher</span><span class="hljs-params">(Teacher teacher)</span> &#123;<br>        <span class="hljs-built_in">this</span>.teacher = teacher;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>@Autowired默认采用byType的方式进行自动装配，也就是说会使用类型进行配，那么要是出现了多个相同类型的Bean，如果我们想要指定使用其中的某一个，此时，我们可以配合@Qualifier进行名称匹配：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean(&quot;a&quot;)</span><br><span class="hljs-keyword">public</span> Teacher <span class="hljs-title function_">teacherA</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Teacher</span>();<br>&#125;<br><br><span class="hljs-meta">@Bean(&quot;b&quot;)</span><br><span class="hljs-keyword">public</span> Teacher <span class="hljs-title function_">teacherB</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Teacher</span>();<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-meta">@Qualifier(&quot;a&quot;)</span>   <span class="hljs-comment">//匹配名称为a的Teacher类型的Bean</span><br>    <span class="hljs-keyword">private</span> Teacher teacher;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/backend/" class="category-chain-item">backend</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/backend/object-Object/" class="category-chain-item">[object Object]</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/backend/object-Object/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/backend/object-Object/java/backend/" class="category-chain-item">backend</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Spring</div>
+      <div>http://supersurge.github.io/2025/11/06/Spring/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Surge</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/11/05/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="hexo博客使用指南">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">hexo博客使用指南</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/30/%E9%9D%A2%E5%90%91%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84python%E5%AD%A6%E4%B9%A0/" title="面向机器学习的python学习">
+                        <span class="hidden-mobile">面向机器学习的python学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
