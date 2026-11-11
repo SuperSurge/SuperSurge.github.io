@@ -1,0 +1,838 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid1.png">
+  <link rel="icon" href="/img/fluid1.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Surge">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Python 常见数据类型详解（刷算法题）一、数值类型（int, float, complex, bool）特点 int：任意精度整数，无大小限制 float：双精度浮点数，存在精度问题 complex：复数，形如 a+bj bool：True&#x2F;False，是 int 的子类（True&#x3D;&#x3D;1）  创建123456789a &#x3D; 10b &#x3D; 3.14c &#x3D; 2 + 3jd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 常见数据类型详解（刷算法题）">
+<meta property="og:url" content="http://supersurge.github.io/2026/11/11/Python%20%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%AF%A6%E8%A7%A3%EF%BC%88%E5%88%B7%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%89/index.html">
+<meta property="og:site_name" content="Surge的小站">
+<meta property="og:description" content="Python 常见数据类型详解（刷算法题）一、数值类型（int, float, complex, bool）特点 int：任意精度整数，无大小限制 float：双精度浮点数，存在精度问题 complex：复数，形如 a+bj bool：True&#x2F;False，是 int 的子类（True&#x3D;&#x3D;1）  创建123456789a &#x3D; 10b &#x3D; 3.14c &#x3D; 2 + 3jd">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-11T08:47:00.496Z">
+<meta property="article:author" content="Surge">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Python 常见数据类型详解（刷算法题） - Surge的小站</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"supersurge.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Surge&#39;s Home</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default1.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Python 常见数据类型详解（刷算法题）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-11-11 00:00" pubdate>
+          2026年11月11日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Python 常见数据类型详解（刷算法题）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Python-常见数据类型详解（刷算法题）"><a href="#Python-常见数据类型详解（刷算法题）" class="headerlink" title="Python 常见数据类型详解（刷算法题）"></a>Python 常见数据类型详解（刷算法题）</h1><h2 id="一、数值类型（int-float-complex-bool）"><a href="#一、数值类型（int-float-complex-bool）" class="headerlink" title="一、数值类型（int, float, complex, bool）"></a>一、数值类型（int, float, complex, bool）</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><strong>int</strong>：任意精度整数，无大小限制</li>
+<li><strong>float</strong>：双精度浮点数，存在精度问题</li>
+<li><strong>complex</strong>：复数，形如 <code>a+bj</code></li>
+<li><strong>bool</strong>：<code>True</code>&#x2F;<code>False</code>，是 int 的子类（True&#x3D;&#x3D;1）</li>
+</ul>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">a = <span class="hljs-number">10</span><br>b = <span class="hljs-number">3.14</span><br>c = <span class="hljs-number">2</span> + <span class="hljs-number">3j</span><br>d = <span class="hljs-literal">True</span><br>e = <span class="hljs-built_in">int</span>(<span class="hljs-string">&quot;42&quot;</span>)        <span class="hljs-comment"># 字符串转int</span><br>f = <span class="hljs-built_in">float</span>(<span class="hljs-string">&quot;3.14&quot;</span>)<br>g = <span class="hljs-number">0b1010</span>           <span class="hljs-comment"># 二进制</span><br>h = <span class="hljs-number">0o17</span>             <span class="hljs-comment"># 八进制</span><br>i = <span class="hljs-number">0x1F</span>             <span class="hljs-comment"># 十六进制</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="增删"><a href="#增删" class="headerlink" title="增删"></a>增删</h3><p>数值是不可变类型，<strong>不支持增删</strong>，只能重新赋值。</p>
+<h3 id="查找-判断"><a href="#查找-判断" class="headerlink" title="查找&#x2F;判断"></a>查找&#x2F;判断</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(a))           <span class="hljs-comment"># &lt;class &#x27;int&#x27;&gt;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">isinstance</span>(a, <span class="hljs-built_in">int</span>))<span class="hljs-comment"># True</span><br><span class="hljs-built_in">print</span>(a == <span class="hljs-number">10</span>)           <span class="hljs-comment"># True</span><br><span class="hljs-built_in">print</span>(<span class="hljs-number">2</span> &lt; <span class="hljs-number">3</span> &lt; <span class="hljs-number">5</span>)         <span class="hljs-comment"># True 链式比较</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><p>数值不可迭代，<strong>不能用 for 遍历</strong>。可借助 range：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):<br>    <span class="hljs-built_in">print</span>(i)<br></code></pre></td></tr></table></figure>
+
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">nums = [<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">sorted</span>(nums))      <span class="hljs-comment"># [1, 2, 3]</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">min</span>(nums), <span class="hljs-built_in">max</span>(nums))<br></code></pre></td></tr></table></figure>
+
+<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-number">7</span> + <span class="hljs-number">2</span>, <span class="hljs-number">7</span> - <span class="hljs-number">2</span>, <span class="hljs-number">7</span> * <span class="hljs-number">2</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-number">7</span> / <span class="hljs-number">2</span>)   <span class="hljs-comment"># 3.5 真除</span><br><span class="hljs-built_in">print</span>(<span class="hljs-number">7</span> // <span class="hljs-number">2</span>)  <span class="hljs-comment"># 3   整除</span><br><span class="hljs-built_in">print</span>(<span class="hljs-number">7</span> % <span class="hljs-number">2</span>)   <span class="hljs-comment"># 1   取余</span><br><span class="hljs-built_in">print</span>(<span class="hljs-number">2</span> ** <span class="hljs-number">10</span>) <span class="hljs-comment"># 1024 幂</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">abs</span>(-<span class="hljs-number">5</span>)) <span class="hljs-comment"># 5</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">round</span>(<span class="hljs-number">3.14159</span>, <span class="hljs-number">2</span>)) <span class="hljs-comment"># 3.14</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">divmod</span>(<span class="hljs-number">7</span>, <span class="hljs-number">2</span>))      <span class="hljs-comment"># (3, 1)</span><br><span class="hljs-built_in">print</span>(<span class="hljs-number">0.1</span> + <span class="hljs-number">0.2</span>)         <span class="hljs-comment"># 0.30000000000000004 精度问题</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="二、字符串（str）"><a href="#二、字符串（str）" class="headerlink" title="二、字符串（str）"></a>二、字符串（str）</h2><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><strong>不可变</strong>、有序、可迭代</li>
+<li>支持索引 <code>s[0]</code> 和切片 <code>s[1:4]</code></li>
+<li>支持多种字面量写法：<code>&#39;x&#39;</code>、<code>&quot;x&quot;</code>、<code>&#39;&#39;&#39;x&#39;&#39;&#39;</code>、<code>f&quot;...&quot;</code></li>
+</ul>
+<h3 id="创建-1"><a href="#创建-1" class="headerlink" title="创建"></a>创建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">s1 = <span class="hljs-string">&quot;hello&quot;</span><br>s2 = <span class="hljs-string">&#x27;world&#x27;</span><br>s3 = <span class="hljs-string">&quot;&quot;&quot;多行</span><br><span class="hljs-string">字符串&quot;&quot;&quot;</span><br>s4 = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;s1&#125;</span> <span class="hljs-subst">&#123;s2&#125;</span>&quot;</span>       <span class="hljs-comment"># f-string</span><br>s5 = <span class="hljs-built_in">str</span>(<span class="hljs-number">12345</span>)<br>s6 = <span class="hljs-string">&quot;a,b,c&quot;</span>.split(<span class="hljs-string">&quot;,&quot;</span>) <span class="hljs-comment"># 列表</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="增删（本质是新建）"><a href="#增删（本质是新建）" class="headerlink" title="增删（本质是新建）"></a>增删（本质是新建）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">s = <span class="hljs-string">&quot;hello&quot;</span><br>s2 = s + <span class="hljs-string">&quot; world&quot;</span>        <span class="hljs-comment"># 拼接</span><br>s3 = s * <span class="hljs-number">3</span>               <span class="hljs-comment"># 重复</span><br><span class="hljs-comment"># 字符串不可变，无法原地增删字符</span><br><span class="hljs-comment"># 可用 replace 生成新串</span><br>s4 = s.replace(<span class="hljs-string">&quot;l&quot;</span>, <span class="hljs-string">&quot;L&quot;</span>) <span class="hljs-comment"># &quot;heLLo&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="查找-判断-1"><a href="#查找-判断-1" class="headerlink" title="查找&#x2F;判断"></a>查找&#x2F;判断</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">s = <span class="hljs-string">&quot;hello world&quot;</span><br><span class="hljs-built_in">print</span>(s[<span class="hljs-number">0</span>], s[-<span class="hljs-number">1</span>])         <span class="hljs-comment"># h d</span><br><span class="hljs-built_in">print</span>(s[<span class="hljs-number">0</span>:<span class="hljs-number">5</span>])              <span class="hljs-comment"># hello</span><br><span class="hljs-built_in">print</span>(s.find(<span class="hljs-string">&quot;world&quot;</span>))     <span class="hljs-comment"># 6 找不到返回-1</span><br><span class="hljs-built_in">print</span>(s.index(<span class="hljs-string">&quot;world&quot;</span>))    <span class="hljs-comment"># 6 找不到抛异常</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;world&quot;</span> <span class="hljs-keyword">in</span> s)        <span class="hljs-comment"># True</span><br><span class="hljs-built_in">print</span>(s.count(<span class="hljs-string">&quot;l&quot;</span>))        <span class="hljs-comment"># 3</span><br><span class="hljs-built_in">print</span>(s.startswith(<span class="hljs-string">&quot;he&quot;</span>))  <span class="hljs-comment"># True</span><br><span class="hljs-built_in">print</span>(s.endswith(<span class="hljs-string">&quot;ld&quot;</span>))    <span class="hljs-comment"># True</span><br><span class="hljs-built_in">print</span>(s.isdigit(), s.isalpha(), s.isspace())<br><span class="hljs-built_in">print</span>(s.upper(), s.lower(), s.title())<br></code></pre></td></tr></table></figure>
+
+<h3 id="遍历-1"><a href="#遍历-1" class="headerlink" title="遍历"></a>遍历</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> ch <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;abc&quot;</span>:<br>    <span class="hljs-built_in">print</span>(ch)<br><span class="hljs-keyword">for</span> i, ch <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(<span class="hljs-string">&quot;abc&quot;</span>):<br>    <span class="hljs-built_in">print</span>(i, ch)<br></code></pre></td></tr></table></figure>
+
+<h3 id="排序-1"><a href="#排序-1" class="headerlink" title="排序"></a>排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">s = <span class="hljs-string">&quot;cba&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&quot;</span>.join(<span class="hljs-built_in">sorted</span>(s)))     <span class="hljs-comment"># &quot;abc&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&quot;</span>.join(<span class="hljs-built_in">sorted</span>(s, reverse=<span class="hljs-literal">True</span>)))  <span class="hljs-comment"># &quot;cba&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="运算-1"><a href="#运算-1" class="headerlink" title="运算"></a>运算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;a&quot;</span> + <span class="hljs-string">&quot;b&quot;</span>)     <span class="hljs-comment"># ab</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;ab&quot;</span> * <span class="hljs-number">3</span>)      <span class="hljs-comment"># ababab</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;a&quot;</span> &lt; <span class="hljs-string">&quot;b&quot;</span>)     <span class="hljs-comment"># True（字典序）</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(<span class="hljs-string">&quot;hello&quot;</span>))  <span class="hljs-comment"># 5</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三、列表（list）"><a href="#三、列表（list）" class="headerlink" title="三、列表（list）"></a>三、列表（list）</h2><h3 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><strong>可变</strong>、有序、可迭代</li>
+<li>元素类型可混合</li>
+<li>支持索引&#x2F;切片，允许重复元素</li>
+</ul>
+<h3 id="创建-2"><a href="#创建-2" class="headerlink" title="创建"></a>创建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">lst1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br>lst2 = <span class="hljs-built_in">list</span>(<span class="hljs-string">&quot;abc&quot;</span>)        <span class="hljs-comment"># [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span><br>lst3 = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>))     <span class="hljs-comment"># [0,1,2,3,4]</span><br>lst4 = [i*i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>)]  <span class="hljs-comment"># [0,1,4,9,16]</span><br>lst5 = [<span class="hljs-number">1</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-number">3.14</span>, <span class="hljs-literal">True</span>]<br></code></pre></td></tr></table></figure>
+
+<h3 id="增删-1"><a href="#增删-1" class="headerlink" title="增删"></a>增删</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">lst = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br>lst.append(<span class="hljs-number">4</span>)          <span class="hljs-comment"># 尾部追加 [1,2,3,4]</span><br>lst.insert(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)       <span class="hljs-comment"># 指定位置插入 [0,1,2,3,4]</span><br>lst.extend([<span class="hljs-number">5</span>, <span class="hljs-number">6</span>])     <span class="hljs-comment"># 扩展 [0,1,2,3,4,5,6]</span><br><br>lst.remove(<span class="hljs-number">2</span>)          <span class="hljs-comment"># 按值删除第一个2</span><br>lst.pop()              <span class="hljs-comment"># 删除并返回末尾元素</span><br>lst.pop(<span class="hljs-number">0</span>)             <span class="hljs-comment"># 删除索引0</span><br><span class="hljs-keyword">del</span> lst[<span class="hljs-number">0</span>]             <span class="hljs-comment"># 删除索引</span><br>lst.clear()            <span class="hljs-comment"># 清空</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="查找-判断-2"><a href="#查找-判断-2" class="headerlink" title="查找&#x2F;判断"></a>查找&#x2F;判断</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">lst = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">20</span>]<br><span class="hljs-built_in">print</span>(lst[<span class="hljs-number">0</span>], lst[-<span class="hljs-number">1</span>])<br><span class="hljs-built_in">print</span>(lst.index(<span class="hljs-number">20</span>))         <span class="hljs-comment"># 1（首次）</span><br><span class="hljs-built_in">print</span>(lst.count(<span class="hljs-number">20</span>))         <span class="hljs-comment"># 2</span><br><span class="hljs-built_in">print</span>(<span class="hljs-number">20</span> <span class="hljs-keyword">in</span> lst)             <span class="hljs-comment"># True</span><br><span class="hljs-built_in">print</span>(lst[<span class="hljs-number">1</span>:<span class="hljs-number">3</span>])              <span class="hljs-comment"># [20, 30]</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="遍历-2"><a href="#遍历-2" class="headerlink" title="遍历"></a>遍历</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> lst: <span class="hljs-built_in">print</span>(x)<br><span class="hljs-keyword">for</span> i, x <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(lst): <span class="hljs-built_in">print</span>(i, x)<br><span class="hljs-keyword">for</span> a, b <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], [<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>]): <span class="hljs-built_in">print</span>(a, b)<br></code></pre></td></tr></table></figure>
+
+<h3 id="排序-2"><a href="#排序-2" class="headerlink" title="排序"></a>排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">lst = [<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]<br>lst.sort()                 <span class="hljs-comment"># 原地排序 [1,2,3]</span><br>lst.sort(reverse=<span class="hljs-literal">True</span>)     <span class="hljs-comment"># 降序</span><br>lst.sort(key=<span class="hljs-keyword">lambda</span> x: -x)<br>new = <span class="hljs-built_in">sorted</span>(lst)          <span class="hljs-comment"># 返回新列表</span><br>lst.reverse()              <span class="hljs-comment"># 反转</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="运算-2"><a href="#运算-2" class="headerlink" title="运算"></a>运算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>] + [<span class="hljs-number">3</span>,<span class="hljs-number">4</span>])       <span class="hljs-comment"># [1,2,3,4]</span><br><span class="hljs-built_in">print</span>([<span class="hljs-number">0</span>] * <span class="hljs-number">3</span>)             <span class="hljs-comment"># [0,0,0]</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]))        <span class="hljs-comment"># 3</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="四、元组（tuple）"><a href="#四、元组（tuple）" class="headerlink" title="四、元组（tuple）"></a>四、元组（tuple）</h2><h3 id="特点-3"><a href="#特点-3" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><strong>不可变</strong>、有序、可迭代</li>
+<li>可作为字典键（可哈希）</li>
+<li>比 list 更轻量，适合固定数据</li>
+</ul>
+<h3 id="创建-3"><a href="#创建-3" class="headerlink" title="创建"></a>创建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">t1 = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)<br>t2 = <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>            <span class="hljs-comment"># 省略括号</span><br>t3 = (<span class="hljs-number">1</span>,)               <span class="hljs-comment"># 单元素必须加逗号</span><br>t4 = <span class="hljs-built_in">tuple</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<br>t5 = ()                 <span class="hljs-comment"># 空元组</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="增删-2"><a href="#增删-2" class="headerlink" title="增删"></a>增删</h3><p><strong>不可变</strong>，不能增删元素。需要时先转 list 再转回：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">t = (<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)<br>t2 = t + (<span class="hljs-number">4</span>,)       <span class="hljs-comment"># 生成新元组</span><br><span class="hljs-comment"># t[0] = 10  # TypeError</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="查找-判断-3"><a href="#查找-判断-3" class="headerlink" title="查找&#x2F;判断"></a>查找&#x2F;判断</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">t = (<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)<br><span class="hljs-built_in">print</span>(t[<span class="hljs-number">0</span>], t[-<span class="hljs-number">1</span>], t[<span class="hljs-number">1</span>:])<br><span class="hljs-built_in">print</span>(<span class="hljs-number">2</span> <span class="hljs-keyword">in</span> t)<br><span class="hljs-built_in">print</span>(t.index(<span class="hljs-number">2</span>), t.count(<span class="hljs-number">2</span>))<br></code></pre></td></tr></table></figure>
+
+<h3 id="遍历-3"><a href="#遍历-3" class="headerlink" title="遍历"></a>遍历</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> t: <span class="hljs-built_in">print</span>(x)<br><span class="hljs-keyword">for</span> i, x <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(t): <span class="hljs-built_in">print</span>(i, x)<br></code></pre></td></tr></table></figure>
+
+<h3 id="排序-3"><a href="#排序-3" class="headerlink" title="排序"></a>排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">t = (<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">tuple</span>(<span class="hljs-built_in">sorted</span>(t)))  <span class="hljs-comment"># (1,2,3)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="运算-3"><a href="#运算-3" class="headerlink" title="运算"></a>运算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>((<span class="hljs-number">1</span>,<span class="hljs-number">2</span>) + (<span class="hljs-number">3</span>,))    <span class="hljs-comment"># (1,2,3)</span><br><span class="hljs-built_in">print</span>((<span class="hljs-number">0</span>,) * <span class="hljs-number">3</span>)        <span class="hljs-comment"># (0,0,0)</span><br><span class="hljs-comment"># 元组解包</span><br>a, b = <span class="hljs-number">1</span>, <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="五、字典（dict）"><a href="#五、字典（dict）" class="headerlink" title="五、字典（dict）"></a>五、字典（dict）</h2><h3 id="特点-4"><a href="#特点-4" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><strong>可变</strong>、<strong>键唯一</strong>、Key 必须可哈希</li>
+<li>3.7+ 保持插入顺序</li>
+<li>查找 O(1)</li>
+</ul>
+<h3 id="创建-4"><a href="#创建-4" class="headerlink" title="创建"></a>创建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">d1 = &#123;<span class="hljs-string">&#x27;a&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;b&#x27;</span>: <span class="hljs-number">2</span>&#125;<br>d2 = <span class="hljs-built_in">dict</span>(a=<span class="hljs-number">1</span>, b=<span class="hljs-number">2</span>)<br>d3 = <span class="hljs-built_in">dict</span>([(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-number">1</span>),(<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-number">2</span>)])<br>d4 = &#123;k: v <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> [(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-number">1</span>),(<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-number">2</span>)]&#125;<br>d5 = &#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="增删-3"><a href="#增删-3" class="headerlink" title="增删"></a>增删</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">d = &#123;<span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-number">1</span>&#125;<br>d[<span class="hljs-string">&#x27;b&#x27;</span>] = <span class="hljs-number">2</span>                <span class="hljs-comment"># 新增</span><br>d[<span class="hljs-string">&#x27;a&#x27;</span>] = <span class="hljs-number">10</span>               <span class="hljs-comment"># 修改</span><br>d.update(&#123;<span class="hljs-string">&#x27;c&#x27;</span>:<span class="hljs-number">3</span>&#125;)         <span class="hljs-comment"># 批量</span><br><span class="hljs-keyword">del</span> d[<span class="hljs-string">&#x27;a&#x27;</span>]                <span class="hljs-comment"># 删除</span><br>val = d.pop(<span class="hljs-string">&#x27;b&#x27;</span>)          <span class="hljs-comment"># 删除并返回</span><br>d.pop(<span class="hljs-string">&#x27;x&#x27;</span>, <span class="hljs-literal">None</span>)          <span class="hljs-comment"># 不存在返回默认</span><br>d.clear()                 <span class="hljs-comment"># 清空</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="查找-判断-4"><a href="#查找-判断-4" class="headerlink" title="查找&#x2F;判断"></a>查找&#x2F;判断</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">d = &#123;<span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;b&#x27;</span>:<span class="hljs-number">2</span>&#125;<br><span class="hljs-built_in">print</span>(d[<span class="hljs-string">&#x27;a&#x27;</span>])              <span class="hljs-comment"># 1（不存在抛KeyError）</span><br><span class="hljs-built_in">print</span>(d.get(<span class="hljs-string">&#x27;z&#x27;</span>, <span class="hljs-number">0</span>))       <span class="hljs-comment"># 0</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;a&#x27;</span> <span class="hljs-keyword">in</span> d)            <span class="hljs-comment"># True</span><br><span class="hljs-built_in">print</span>(d.keys(), d.values(), d.items())<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(d))<br></code></pre></td></tr></table></figure>
+
+<h3 id="遍历-4"><a href="#遍历-4" class="headerlink" title="遍历"></a>遍历</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> d: <span class="hljs-built_in">print</span>(k)<br><span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> d.items(): <span class="hljs-built_in">print</span>(k, v)<br><span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> d.values(): <span class="hljs-built_in">print</span>(v)<br></code></pre></td></tr></table></figure>
+
+<h3 id="排序-4"><a href="#排序-4" class="headerlink" title="排序"></a>排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">d = &#123;<span class="hljs-string">&#x27;b&#x27;</span>:<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;c&#x27;</span>:<span class="hljs-number">3</span>&#125;<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">dict</span>(<span class="hljs-built_in">sorted</span>(d.items())))                    <span class="hljs-comment"># 按 key</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">dict</span>(<span class="hljs-built_in">sorted</span>(d.items(), key=<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-number">1</span>])))<span class="hljs-comment"># 按 value</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="运算-4"><a href="#运算-4" class="headerlink" title="运算"></a>运算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">d1 = &#123;<span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-number">1</span>&#125;; d2 = &#123;<span class="hljs-string">&#x27;b&#x27;</span>:<span class="hljs-number">2</span>&#125;<br><span class="hljs-built_in">print</span>(&#123;**d1, **d2&#125;)        <span class="hljs-comment"># 合并（Python 3.5+）</span><br>d1 |= d2                   <span class="hljs-comment"># 原地合并（3.9+）</span><br><span class="hljs-comment"># 字典不支持 + 和 *</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、集合（set-frozenset）"><a href="#六、集合（set-frozenset）" class="headerlink" title="六、集合（set &#x2F; frozenset）"></a>六、集合（set &#x2F; frozenset）</h2><h3 id="特点-5"><a href="#特点-5" class="headerlink" title="特点"></a>特点</h3><ul>
+<li><strong>可变</strong>（set）&#x2F; <strong>不可变</strong>（frozenset）</li>
+<li>无序、<strong>元素唯一</strong>、元素必须可哈希</li>
+<li>支持集合运算（交、并、差、对称差）</li>
+</ul>
+<h3 id="创建-5"><a href="#创建-5" class="headerlink" title="创建"></a>创建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">s1 = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;<br>s2 = <span class="hljs-built_in">set</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])       <span class="hljs-comment"># &#123;1,2,3&#125;</span><br>s3 = &#123;i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>)&#125;<br>s4 = <span class="hljs-built_in">frozenset</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<br>s5 = <span class="hljs-built_in">set</span>()                <span class="hljs-comment"># 空集合（不能用&#123;&#125;，那是空dict）</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="增删-4"><a href="#增删-4" class="headerlink" title="增删"></a>增删</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">s = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>&#125;<br>s.add(<span class="hljs-number">3</span>)<br>s.update([<span class="hljs-number">4</span>, <span class="hljs-number">5</span>])<br>s.remove(<span class="hljs-number">3</span>)              <span class="hljs-comment"># 不存在抛异常</span><br>s.discard(<span class="hljs-number">99</span>)            <span class="hljs-comment"># 不存在不抛</span><br>x = s.pop()              <span class="hljs-comment"># 随机弹出</span><br>s.clear()<br></code></pre></td></tr></table></figure>
+
+<h3 id="查找-判断-5"><a href="#查找-判断-5" class="headerlink" title="查找&#x2F;判断"></a>查找&#x2F;判断</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">s = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;<br><span class="hljs-built_in">print</span>(<span class="hljs-number">1</span> <span class="hljs-keyword">in</span> s)<br><span class="hljs-built_in">print</span>(&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>&#125; &lt;= s)         <span class="hljs-comment"># 子集</span><br><span class="hljs-built_in">print</span>(s.issubset(&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&#125;))<br><span class="hljs-built_in">print</span>(s.issuperset(&#123;<span class="hljs-number">1</span>&#125;))<br></code></pre></td></tr></table></figure>
+
+<h3 id="遍历-5"><a href="#遍历-5" class="headerlink" title="遍历"></a>遍历</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> s: <span class="hljs-built_in">print</span>(x)<br></code></pre></td></tr></table></figure>
+
+<h3 id="排序-5"><a href="#排序-5" class="headerlink" title="排序"></a>排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">s = &#123;<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>&#125;<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">sorted</span>(s))          <span class="hljs-comment"># [1,2,3]</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="运算-5"><a href="#运算-5" class="headerlink" title="运算"></a>运算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">a, b = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;, &#123;<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&#125;<br><span class="hljs-built_in">print</span>(a | b)  <span class="hljs-comment"># 并集 &#123;1,2,3,4&#125;</span><br><span class="hljs-built_in">print</span>(a &amp; b)  <span class="hljs-comment"># 交集 &#123;2,3&#125;</span><br><span class="hljs-built_in">print</span>(a - b)  <span class="hljs-comment"># 差集 &#123;1&#125;</span><br><span class="hljs-built_in">print</span>(a ^ b)  <span class="hljs-comment"># 对称差 &#123;1,4&#125;</span><br><span class="hljs-built_in">print</span>(a.union(b), a.intersection(b), a.difference(b))<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="七、常见内置函数示例"><a href="#七、常见内置函数示例" class="headerlink" title="七、常见内置函数示例"></a>七、常见内置函数示例</h2><h3 id="类型与转换"><a href="#类型与转换" class="headerlink" title="类型与转换"></a>类型与转换</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">int</span>(<span class="hljs-string">&quot;10&quot;</span>), <span class="hljs-built_in">float</span>(<span class="hljs-string">&quot;3.14&quot;</span>), <span class="hljs-built_in">str</span>(<span class="hljs-number">123</span>), <span class="hljs-built_in">bool</span>(<span class="hljs-number">0</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(<span class="hljs-string">&quot;abc&quot;</span>), <span class="hljs-built_in">tuple</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]), <span class="hljs-built_in">set</span>([<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]), <span class="hljs-built_in">dict</span>(a=<span class="hljs-number">1</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(<span class="hljs-number">5</span>), <span class="hljs-built_in">isinstance</span>(<span class="hljs-number">5</span>, <span class="hljs-built_in">int</span>), <span class="hljs-built_in">issubclass</span>(<span class="hljs-built_in">bool</span>, <span class="hljs-built_in">int</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;A&#x27;</span>), <span class="hljs-built_in">chr</span>(<span class="hljs-number">65</span>))         <span class="hljs-comment"># 65  &#x27;A&#x27;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">bin</span>(<span class="hljs-number">10</span>), <span class="hljs-built_in">oct</span>(<span class="hljs-number">10</span>), <span class="hljs-built_in">hex</span>(<span class="hljs-number">10</span>)) <span class="hljs-comment"># 0b1010 0o12 0xa</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="序列与迭代"><a href="#序列与迭代" class="headerlink" title="序列与迭代"></a>序列与迭代</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]))                 <span class="hljs-comment"># 3</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">max</span>([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>]), <span class="hljs-built_in">min</span>([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>]))   <span class="hljs-comment"># 3 1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">sum</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]), <span class="hljs-built_in">sum</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-number">10</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">sorted</span>([<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]))              <span class="hljs-comment"># [1,2,3]</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">reversed</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]))            <span class="hljs-comment"># 反向迭代器</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(<span class="hljs-built_in">reversed</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])))      <span class="hljs-comment"># [3,2,1]</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(<span class="hljs-built_in">enumerate</span>([<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>])))   <span class="hljs-comment"># [(0,&#x27;a&#x27;),(1,&#x27;b&#x27;)]</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(<span class="hljs-built_in">zip</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>])))   <span class="hljs-comment"># [(1,&#x27;a&#x27;),(2,&#x27;b&#x27;)]</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">str</span>, [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])))      <span class="hljs-comment"># [&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;]</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(<span class="hljs-built_in">filter</span>(<span class="hljs-keyword">lambda</span> x: x&gt;<span class="hljs-number">1</span>, [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])))  <span class="hljs-comment"># [1,2,3]</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">all</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>]), <span class="hljs-built_in">any</span>([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]))   <span class="hljs-comment"># False True</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>)))        <span class="hljs-comment"># [1,3,5,7,9]</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">abs</span>(-<span class="hljs-number">5</span>), <span class="hljs-built_in">round</span>(<span class="hljs-number">3.567</span>, <span class="hljs-number">2</span>), <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">10</span>), <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">10</span>,<span class="hljs-number">1000</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">divmod</span>(<span class="hljs-number">7</span>, <span class="hljs-number">2</span>))                 <span class="hljs-comment"># (3,1)</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">round</span>(<span class="hljs-number">2.5</span>), <span class="hljs-built_in">round</span>(<span class="hljs-number">3.5</span>))       <span class="hljs-comment"># 2 4（银行家舍入）</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(<span class="hljs-number">5</span>), <span class="hljs-built_in">hash</span>(<span class="hljs-string">&quot;abc&quot;</span>))           <span class="hljs-comment"># 对象id、哈希值</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">repr</span>(<span class="hljs-string">&quot;a&quot;</span>), <span class="hljs-built_in">ascii</span>(<span class="hljs-string">&quot;中&quot;</span>))       <span class="hljs-comment"># &#x27;a&#x27;  &#x27;\u4e2d&#x27;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">format</span>(<span class="hljs-number">3.14159</span>, <span class="hljs-string">&quot;.2f&quot;</span>))       <span class="hljs-comment"># 3.14</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">eval</span>(<span class="hljs-string">&quot;1+2&quot;</span>), <span class="hljs-built_in">exec</span>(<span class="hljs-string">&quot;x=5&quot;</span>))     <span class="hljs-comment"># 3  None（x 变量创建）</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;输入:&quot;</span>))               <span class="hljs-comment"># 读取输入</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;a.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>))           <span class="hljs-comment"># 打开文件</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">dir</span>([]))                      <span class="hljs-comment"># 列出属性</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">help</span>(<span class="hljs-built_in">len</span>))                    <span class="hljs-comment"># 帮助</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="高阶"><a href="#高阶" class="headerlink" title="高阶"></a>高阶</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># zip 矩阵转置</span><br>mat = [[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(<span class="hljs-built_in">zip</span>(*mat)))              <span class="hljs-comment"># [(1,3),(2,4)]</span><br><br><span class="hljs-comment"># map + lambda 批量转换</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x: x*x, [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])))  <span class="hljs-comment"># [1,4,9]</span><br><br><span class="hljs-comment"># 条件表达式</span><br><span class="hljs-built_in">print</span>([x <span class="hljs-keyword">if</span> x&gt;<span class="hljs-number">0</span> <span class="hljs-keyword">else</span> -x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> [-<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,-<span class="hljs-number">3</span>]])  <span class="hljs-comment"># [1,2,3]</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="八、总结对比表"><a href="#八、总结对比表" class="headerlink" title="八、总结对比表"></a>八、总结对比表</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>可变</th>
+<th>有序</th>
+<th>唯一</th>
+<th>可哈希</th>
+<th>常用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int&#x2F;float&#x2F;bool</td>
+<td>✗</td>
+<td>—</td>
+<td>—</td>
+<td>✓</td>
+<td>数值计算</td>
+</tr>
+<tr>
+<td>str</td>
+<td>✗</td>
+<td>✓</td>
+<td>✗</td>
+<td>✓</td>
+<td>文本</td>
+</tr>
+<tr>
+<td>list</td>
+<td>✓</td>
+<td>✓</td>
+<td>✗</td>
+<td>✗</td>
+<td>有序可变集合</td>
+</tr>
+<tr>
+<td>tuple</td>
+<td>✗</td>
+<td>✓</td>
+<td>✗</td>
+<td>✓(元素可哈希)</td>
+<td>固定结构、字典键</td>
+</tr>
+<tr>
+<td>dict</td>
+<td>✓</td>
+<td>✓(3.7+)</td>
+<td>Key唯一</td>
+<td>✗</td>
+<td>键值映射</td>
+</tr>
+<tr>
+<td>set</td>
+<td>✓</td>
+<td>✗</td>
+<td>✓</td>
+<td>✗</td>
+<td>去重、集合运算</td>
+</tr>
+<tr>
+<td>frozenset</td>
+<td>✗</td>
+<td>✗</td>
+<td>✓</td>
+<td>✓</td>
+<td>可哈希集合</td>
+</tr>
+</tbody></table>
+<p><strong>选型建议</strong>：</p>
+<ul>
+<li>需要顺序 + 修改 → <code>list</code></li>
+<li>需要顺序 + 不可变 → <code>tuple</code></li>
+<li>需要键值查找 → <code>dict</code></li>
+<li>需要去重&#x2F;集合运算 → <code>set</code></li>
+<li>大量文本处理 → <code>str</code> 及其方法</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/python/" class="category-chain-item">python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python 常见数据类型详解（刷算法题）</div>
+      <div>http://supersurge.github.io/2026/11/11/Python 常见数据类型详解（刷算法题）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Surge</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年11月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/11/05/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="hexo博客使用指南">
+                        <span class="hidden-mobile">hexo博客使用指南</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
